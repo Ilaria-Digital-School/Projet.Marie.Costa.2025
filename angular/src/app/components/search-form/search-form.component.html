@@ -1,0 +1,14 @@
+<form (ngSubmit)="onSearch()" [class]="'searchFormComponent ' + addClass()">
+    <label for="recipesSearch">
+        <app-search-icon />
+        <input
+            type="text"
+            name="recipesSearch"
+            id="recipesSearch"
+            placeholder="Nom de la recette"
+            [(ngModel)]="searchTerm"
+        />
+    </label>
+
+    <button type="submit" class="btn-bg-red">Rechercher</button>
+</form>

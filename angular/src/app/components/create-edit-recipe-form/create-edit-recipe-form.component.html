@@ -1,0 +1,455 @@
+<form
+    action="http://localhost:3000/recipes"
+    method="post"
+    class="createRecipeForm"
+    enctype="multipart/form-data"
+    [formGroup]="recipeForm.formGroup" >
+    <!-- Title -->
+    <div class="formInputDiv" id="createRecipeTitleDiv">
+        <label for="createRecipeTitle" aria-label="Ajoutez un titre à votre recette">
+            Titre de la recette : <span style="color: #EB4137">*</span>
+        </label>
+
+        <input type="text"
+               id="createRecipeTitle"
+               name="createRecipeTitle"
+               placeholder="Titre de la recette"
+               formControlName="name"
+        />
+        <p class="formControlError" *ngIf="arrayInvalidControl.includes('name')">Le nom de la recette doit contenir au moins 4 caractères</p>
+    </div>
+
+    <!-- Description -->
+    <div class="formInputDiv" id="createRecipeDescriptionDiv">
+        <label for="createRecipeDescription" aria-label="Ajoutez une description à votre recette">
+            Description :
+        </label>
+
+        <textarea
+            id="createRecipeDescription"
+            name="createRecipeDescription"
+            placeholder="Description"
+            [rows]="10"
+            maxlength="250"
+            style="resize: none;"
+            formControlName="description">
+        </textarea>
+    </div>
+
+    <!-- Ajouter une image -->
+    <div class="formInputDiv" id="createRecipeImgDiv">
+        <label for="recipe-image" aria-label="Ajoutez une image à votre recette">
+            Ajouter une image : <span style="color: #EB4137">*</span>
+        </label>
+
+        <div class="recipeImageContainer">
+            @if (updateRecipe && recipeImageName && recipeImageName === recipeData.imageName) {
+                <div class="wrapperRecipeImage wrapperRecipeImage__recipeImage">
+                    <img [src]="recipeData.imageName" [alt]="'Image de la recette ' + recipeData.name">
+                </div>
+                <button
+                    type="button"
+                    class="btn-bg-darkGrey"
+                    aria-label="Bouton pour modifier l'image"
+                    (click)="removeRecipeImage()">
+                    Changer la photo
+                </button>
+            } @else {
+                <div class="wrapperRecipeImage wrapperRecipeImage__icon">
+                    <img src="question.svg" alt="Aucune photo pour cette recette" aria-label="Insérez votre nouvelle image">
+                </div>
+
+                <input type="file"
+                       id="recipe-image"
+                       name="recipe-image"
+                       placeholder="Ajouter une image"
+                       (change)="onFileSelected($event)" />
+            }
+        </div>
+    </div>
+
+    <!-- Types de cuisine -->
+    <app-multiple-inputs
+        labelTitle="Type de cuisine :"
+        inputId="cuisineTypeInputs"
+        [required]="true">
+        <select
+            aria-label="Sélectionnez le type de cuisine (exemple cuisine française)"
+            id="selectCuisineType"
+            formControlName="cuisineType">
+            <option value="">---</option>
+            @for (ct of cuisineTypeList(); track ct.id) {
+                <option
+                    [value]="ct.value"
+                    [attr.aria-label]="'Cuisine ' + ct.title"
+                >{{ ct.title }}</option>
+            }
+        </select>
+        <p class="formControlError" *ngIf="arrayInvalidControl.includes('cuisineType')">Le type de cuisine est requis</p>
+    </app-multiple-inputs>
+
+    <!-- Types de cuisson -->
+    <app-cooking-type
+        [recipeId]="recipeDataId"
+        (checkboxValue)="getCheckboxValue($event)"
+        [ifInvalidControl]="arrayInvalidControl" />
+
+    <!-- Nombre de portions -->
+    <app-multiple-inputs
+        aria-label="Indiquez le nombre de portions"
+        labelTitle="Nombre de portions :"
+        inputId="servingNumberInputs"
+        [required]="true">
+        <ul formGroupName="servingNumber">
+            <li>
+                <label for="servingNumber">
+                    <input type="number"
+                           id="servingNumber"
+                           name="servingNumber"
+                           placeholder="Ex : 4"
+                           aria-label="Indiquez un chiffre"
+                           formControlName="number" />
+                </label>
+            </li>
+            <li>
+                <label for="servingName">
+                    <select name="servingName" id="servingName" formControlName="type" aria-label="Indiquez le type de portion">
+                        <option value="">Type de portion</option>
+                        <option aria-label="Personne" value="person">Personne(s)</option>
+                        <option aria-label="Part" value="piece">Parts(s)</option>
+                        <option aria-label="Litre" value="liter">Litre(s)</option>
+                        <option aria-label="Vérine" value="cylinders">Vérine(s)</option>
+                    </select>
+                </label>
+            </li>
+        </ul>
+        <p class="formControlError" *ngIf="arrayInvalidControl.includes('servingNumber')">Le nombre de portions est requis</p>
+    </app-multiple-inputs>
+
+    <!-- Difficulté -->
+    <app-difficulty controlName="difficulty" [ifInvalidControl]="arrayInvalidControl" />
+
+    <hr class="createRecipeLine">
+
+    <!-- Temps de préparation, cuisson, pause -->
+    <div class="inputsTimesDiv" formGroupName="recipeTime" aria-label="Indiquez le temps de préparation, le temps de cuisson et le temps de pause">
+        <app-multiple-inputs
+            labelTitle="Temps de préparation :"
+            inputId="makingTimeInput"
+            [required]="true"
+            formGroupName="making">
+            <ul class="inputsTime">
+                <li>
+                    <label for="makingTimeHours">
+                        <input type="number"
+                               aria-label="Nombre d'heure de préparation"
+                               id="makingTimeHours"
+                               name="makingTimeHours"
+                               placeholder="Ex : 2"
+                               formControlName="hours"
+                               [required]="true" />
+                        heure(s)
+                    </label>
+                </li>
+                <li>
+                    <label for="makingTimeMinutes">
+                        <input type="number"
+                               aria-label="Nombre de minute de préparation"
+                               id="makingTimeMinutes"
+                               name="makingTimeMinutes"
+                               placeholder="Ex : 00"
+                               formControlName="minutes"
+                               [required]="true" />
+                        minutes
+                    </label>
+                </li>
+            </ul>
+
+            <p class="formControlError" *ngIf="arrayInvalidControl.includes('recipeTime')">Le temps de préparation est requis</p>
+        </app-multiple-inputs>
+
+        <app-multiple-inputs
+            labelTitle="Temps de cuisson :"
+            inputId="cookingTimeInput"
+            [required]="false">
+
+            <button class="btn-bg-darkGrey" type="button" (click)="addRemoveCookingTime()">
+                {{ isCooking ? 'Supprimer' : 'Ajouter' }}
+            </button>
+
+            <ul *ngIf="isCooking" class="inputsTime" formGroupName="cooking">
+                <li>
+                    <label for="cookingTimeHours">
+                        <input type="number"
+                               aria-label="Nombre d'heure de cuisson"
+                               id="cookingTimeHours"
+                               name="cookingTimeHours"
+                               placeholder="Ex : 1"
+                               formControlName="hours"
+                               [required]="true" />
+                        heure(s)
+                    </label>
+                </li>
+                <li>
+                    <label for="cookingTimeMinutes">
+                        <input type="number"
+                               aria-label="Nombre de minutes de cuisson"
+                               id="cookingTimeMinutes"
+                               name="cookingTimeMinutes"
+                               placeholder="Ex : 30"
+                               formControlName="minutes"
+                               [required]="true" />
+                        minutes
+                    </label>
+                </li>
+            </ul>
+        </app-multiple-inputs>
+
+        <app-multiple-inputs
+            labelTitle="Temps de pause :"
+            inputId="pauseTimeInput"
+            [required]="false">
+
+            <button class="btn-bg-darkGrey" type="button" (click)="addRemovePauseTime()">
+                {{ isPause ? 'Supprimer' : 'Ajouter' }}
+            </button>
+
+            <ul *ngIf="isPause" class="inputsTime" formGroupName="pause">
+                <li>
+                    <label for="pauseTimeHours">
+                        <input type="number"
+                               aria-label="Nombre d'heure de pause"
+                               id="pauseTimeHours"
+                               name="pauseTimeHours"
+                               placeholder="Ex : 1"
+                               formControlName="hours"
+                               [required]="false" />
+                        heure(s)
+                    </label>
+                </li>
+                <li>
+                    <label for="pauseTimeMinutes">
+                        <input type="number"
+                               aria-label="Nombre de minutes de pause"
+                               id="pauseTimeMinutes"
+                               name="pauseTimeMinutes"
+                               placeholder="Ex : 30"
+                               formControlName="minutes"
+                               [required]="true" />
+                        minutes
+                    </label>
+                </li>
+            </ul>
+        </app-multiple-inputs>
+    </div>
+
+    <hr class="createRecipeLine">
+
+    <!-- Liste Ingrédients -->
+    <app-multiple-inputs
+        labelTitle="Liste des ingrédients :"
+        inputId="ingredientsListInputs"
+        [required]="true">
+        <ul formGroupName="ingredientDetail" aria-label="Ajoutez des ingrédients (minimum 2)">
+            <li>
+                <label for="numberIngredient">
+                    <input type="number"
+                           id="numberIngredient"
+                           name="numberIngredient"
+                           formControlName="quantity"
+                           aria-label="Ajoutez la quantité"
+                           placeholder="100" />
+                </label>
+            </li>
+            <li>
+                <label for="ingredientUnity" aria-label="Ajoutez l'unité'">
+                    <select name="ingredientUnity" id="ingredientUnity" formControlName="unit">
+                        <option value="">Unités</option>
+                        <option aria-label="Cuillère à soupe" value="tablespoon">Cuillère à soupe</option>
+                        <option aria-label="Cuillère à café" value="teaspoon">Cuillère à café</option>
+                        <option aria-label="Kilogrammes" value="kilogram">Kilogrammes (kg)</option>
+                        <option aria-label="Grammes" value="gram">Grammes (g)</option>
+                        <option aria-label="Milligrammes" value="milligram">Milligrammes (mg)</option>
+                        <option aria-label="Litres" value="liter">Litres (L)</option>
+                        <option aria-label="Millilitres" value="milliliter">Millilitres (ml)</option>
+                        <option aria-label="Pot(s) de yaourt<" value="pot">Pot(s) de yaourt</option>
+                        <option aria-label="Pincée" value="pinch">Pincée</option>
+                        <option aria-label="Bouteille" value="bottle">Bouteille</option>
+                        <option aria-label="Boîte" value="box">Boîte</option>
+                        <option aria-label="Morceaux" value="piece">Morceaux</option>
+
+                        <option aria-label="Autre (présicez à côté)" value="other">Autre (présicez à côté)</option>
+                    </select>
+                </label>
+            </li>
+            <li>
+                <label for="ingredientName">
+                    <input type="text"
+                           id="ingredientName"
+                           name="ingredientName"
+                           formControlName="ingredient"
+                           aria-label="Ajoutez le nom de l'ingrédient"
+                           placeholder="Ex. : Chocolat en poudre"
+                           (keydown.enter)="addDetails('ingredientDetail', ingredientsList, 'quantity', 'unit', 'ingredient')"
+                    />
+                </label>
+            </li>
+            <li>
+                <button type="button"
+                        class="btn-bg-red stepsIngredientsBtn"
+                        aria-label="Bouton pour ajouter l'ingrédient à la liste"
+                        (click)="addDetails('ingredientDetail', ingredientsList, 'quantity', 'unit', 'ingredient')">
+                    +
+                </button>
+            </li>
+        </ul>
+
+        <p class="errorMessage" *ngIf="errorAddIngredient() !== ''">{{ errorAddIngredient() }}</p>
+
+        <div class="ingredientsList">
+            <ul class="ingredientsListHeader">
+                <li>Quantité</li>
+                <li>Unité</li>
+                <li>Ingrédient</li>
+                <li></li>
+            </ul>
+
+            @for(ingredient of ingredientsListGroups; track $index) {
+                <ul class="listBody"
+                    [formGroup]="ingredient"
+                    [attr.data-ingredient-index]="$index">
+                    <li>
+                        <label [for]="'numberIngredient' + $index">
+                            <input type="number"
+                                   [id]="'numberIngredient' + $index"
+                                   [name]="'numberIngredient' + $index"
+                                   formControlName="quantity"
+                                   placeholder="100" />
+                        </label>
+                    </li>
+                    <li>
+                        <label [for]="'ingredientUnity' + $index">
+                            <select [name]="'ingredientUnity' + $index" [id]="'ingredientUnity' + $index" formControlName="unit">
+                                <option value="">Unités</option>
+                                <option value="tablespoon">Cuillère à soupe</option>
+                                <option value="teaspoon">Cuillère à café</option>
+                                <option value="kilogram">Kilogrammes (kg)</option>
+                                <option value="gram">Grammes (g)</option>
+                                <option value="milligram">Milligrammes (mg)</option>
+                                <option value="liter">Litres (L)</option>
+                                <option value="milliliter">Millilitres (ml)</option>
+                                <option value="pot">Pot(s) de yaourt</option>
+                                <option value="pinch">Pincée</option>
+                                <option value="bottle">Bouteille</option>
+                                <option value="box">Boîte</option>
+                                <option value="piece">Morceaux</option>
+
+                                <option value="other">Autre (présicez à côté)</option>
+                            </select>
+                        </label>
+                    </li>
+                    <li>
+                        <label [for]="'ingredientName' + $index">
+                            <input type="text"
+                                   [id]="'ingredientName' + $index"
+                                   [name]="'ingredientName' + $index"
+                                   formControlName="ingredient"
+                                   placeholder="Ex. : Chocolat en poudre"
+                            />
+                        </label>
+                    </li>
+                    <li>
+                        <button type="button" (click)="removeRow(ingredientsList, $index)">
+                            <app-delete-icon />
+                        </button>
+                    </li>
+                </ul>
+            }
+            <p *ngIf="ingredientsList.length === 0">Aucune ingrédient renseigné pour cette recette (min. 2 requise)</p>
+        </div>
+
+        <p class="formControlError"
+           *ngIf="arrayInvalidControl.includes('ingredientsList')">
+            Renseignez au moins 2 ingrédients
+        </p>
+    </app-multiple-inputs>
+
+    <hr class="createRecipeLine">
+
+    <!-- Liste Étapes -->
+    <app-multiple-inputs
+        labelTitle="Étapes de la recette :"
+        inputId="stepsListInputs"
+        [required]="true">
+        <ul formGroupName="stepDetail"  aria-label="Ajoutez des étapes (minimum 2)">
+            <li>
+                <label for="stepDescription">
+                    <input type="text"
+                           id="stepDescription"
+                           name="stepDescription"
+                           aria-label="Ajoutez la description de l'étape"
+                           placeholder="Ex. : Ajouter le beurre fondue à la préparation"
+                           formControlName="stepName"
+                           (keydown.enter)="addDetails('stepDetail', stepsList, 'id', 'stepName')" />
+                </label>
+            </li>
+            <li>
+                <button type="button"
+                        aria-label="Bouton pour ajouter l'étape à la liste"
+                        class="btn-bg-red stepsIngredientsBtn"
+                        (click)="addDetails('stepDetail', stepsList, 'stepName')">
+                    +
+                </button>
+            </li>
+        </ul>
+
+        <p class="errorMessage" *ngIf="errorAddStep() !== ''">{{ errorAddStep() }}</p>
+
+        <div class="stepsList">
+            <ul class="stepsListHeader">
+                <li>N°</li>
+                <li>Description</li>
+                <li></li>
+            </ul>
+
+            @for(step of stepsListGroups; track $index) {
+                <ul class="listBody"
+                    [formGroup]="step"
+                    [attr.data-step-index]="$index + 1">
+                    <li>
+                        <p>{{ $index + 1 }}</p>
+                    </li>
+                    <li>
+                        <label for="stepDescription">
+                            <input type="text"
+                                   [id]="'stepDescription' + $index"
+                                   [name]="'stepDescription' + $index"
+                                   placeholder="Ex. : Ajouter le beurre fondue à la préparation"
+                                   formControlName="stepName" />
+                        </label>
+                    </li>
+                    <li>
+                        <button type="button"
+                                (click)="removeRow(stepsList, $index)">
+                            <app-delete-icon />
+                        </button>
+                    </li>
+                </ul>
+            }
+            <p *ngIf="stepsList.length === 0">Aucune étape renseigné pour cette recette (min. 2 requise)</p>
+        </div>
+
+        <p class="formControlError" *ngIf="arrayInvalidControl.includes('stepsList')">Renseignez au moins 2 étapes de la recette</p>
+    </app-multiple-inputs>
+
+    <hr class="createRecipeLine">
+
+    <button
+        type="button"
+        (click)="onSubmit()"
+        [class]="recipeFormStatus() === 'INVALID' ? 'btn-disabled btn-bg-red' : 'btn-bg-red'"
+        [disabled]="recipeFormStatus() === 'INVALID'">
+        Soumettre
+    </button>
+</form>
+

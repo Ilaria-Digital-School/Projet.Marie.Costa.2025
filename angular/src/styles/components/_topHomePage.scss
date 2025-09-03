@@ -1,0 +1,35 @@
+@use '../utils/variables' as *;
+
+.subHeader {
+    margin: 5rem 0;
+
+    @media only screen and (max-width: 767px) {
+        padding: 2rem 1rem;
+        margin: 1rem 0;
+    }
+
+    .topHomePage {
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 5rem 3rem;
+        margin-top: -5rem;
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            url('../../../public/header-image-2.jpg'),
+            no-repeat;
+        background-size: cover;
+        color: white;
+
+        @media only screen and (max-width: 767px) {
+            padding: 2rem;
+            background-position: top 0 center;
+        }
+
+        h3 {
+            margin-top: 1rem;
+            font-size: 24px;
+        }
+    }
+}

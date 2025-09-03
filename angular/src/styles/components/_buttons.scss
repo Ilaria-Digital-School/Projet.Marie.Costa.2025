@@ -1,0 +1,145 @@
+@use '../utils/variables' as *;
+
+$mobilePadding: .75rem 1.5rem;
+
+.btn-bold {
+    font-weight: 600;
+}
+
+.btn-bg-red {
+    padding: 1rem 2.5rem;
+    background-color: $firstColor;
+    color: white;
+    border: 2px solid $firstColor;
+    border-radius: 3rem;
+
+    @media only screen and (max-width: 767px) {
+        padding: $mobilePadding;
+    }
+
+    &:hover:not(.btn-disabled) {
+        background-color: white;
+        color: $firstColor;
+    }
+
+    &__border {
+        background-color: white;
+        color: $firstColor;
+        border-color: $firstColor;
+
+        &:hover:not(.btn-disabled) {
+            background-color: $firstColor;
+            color: white;
+        }
+
+        &--header {
+            margin-left: 2rem;
+        }
+    }
+
+    &__underline {
+        background-color: white;
+        color: $firstColor;
+        border-color: white;
+
+        &:hover:not(.btn-disabled) {
+            text-decoration: underline solid $firstColor !important;
+        }
+    }
+}
+
+.btn-bg-white {
+    padding: 1rem 2.5rem;
+    background-color: white;
+    color: $darkGrey;
+    border: 2px solid white;
+    border-radius: 3rem;
+
+    &:hover:not(.btn-disabled) {
+        background-color: $darkGrey;
+        color: white;
+        border-color: $darkGrey;
+    }
+}
+
+.btn-bg-yellow {
+    padding: 1rem 2.5rem;
+    background-color: $thirdColor;
+    color: $darkGrey;
+    border: 2px solid $thirdColor;
+    border-radius: 3rem;
+
+    @media only screen and (max-width: 767px) {
+        padding: $mobilePadding;
+    }
+
+    &:hover:not(.btn-disabled) {
+        background-color: white;
+        border-color: $thirdColor;
+    }
+
+    &__border {
+        background-color: white;
+        border-color: $thirdColor;
+
+        &:hover:not(.btn-disabled) {
+            background-color: $thirdColor;
+            border-color: $thirdColor;
+        }
+    }
+}
+
+.btn-bg-darkGrey {
+    padding: 1rem 2.5rem;
+    background-color: $darkGrey;
+    color: white;
+    border: 2px solid $darkGrey;
+    border-radius: 3rem;
+
+    @media only screen and (max-width: 767px) {
+        padding: $mobilePadding;
+    }
+
+    &:hover:not(.btn-disabled, .btn-bg-darkGrey__profile) {
+        background-color: white;
+        color: $darkGrey;
+        border-color: $darkGrey;
+    }
+
+    &__border, &__profile--active {
+        background-color: white;
+        color: $darkGrey;
+        border-color: $darkGrey;
+    }
+
+    &__border:hover:not(.btn-disabled) {
+        background-color: $darkGrey;
+        color: white;
+        border-color: $darkGrey;
+    }
+
+    &__profile, &__profile--active {
+        &:hover{
+            background-color: $thirdColor;
+            color: $darkGrey;
+            border-color: $darkGrey;
+
+            svg {
+                fill: $darkGrey !important;
+            }
+        }
+    }
+
+    &__header {
+        margin-left: 2rem;
+    }
+}
+
+button.btn-disabled {
+    opacity: .5;
+    cursor: auto;
+}
+
+button, a {
+    cursor: pointer;
+}

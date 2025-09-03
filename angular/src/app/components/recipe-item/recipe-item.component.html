@@ -1,0 +1,54 @@
+<div class="favoriteButton">
+    <button type="button"
+            [class]="localIsFavorite ? 'addFavoriteBtn hide' : 'addFavoriteBtn show'"
+            [attr.aria-label]="'Ajoutez la recette ' + name + 'à vos favoris'"
+            (click)="addFavorite()">
+        <app-heart-border-icon />
+    </button>
+
+    <button type="button"
+            [class]="localIsFavorite ? 'removeFavoriteBtn show' : 'removeFavoriteBtn hide'"
+            [attr.aria-label]="'Supprimer la recette ' + name + 'à vos favoris'"
+            (click)="deleteFavorite()">
+        <app-heart-icon />
+    </button>
+</div>
+
+<a [routerLink]="'/recettes/' + id + '/' + slugify.slugifyString(name)" [attr.aria-label]="name">
+    <div class="recipeItem" [id]="id">
+        <div>
+            <div class="wrapperImg">
+                <img [src]="picture" [alt]="'Image de la recette ' + name">
+            </div>
+        </div>
+
+        <h4>{{ name }}</h4>
+
+        <ul>
+            <li>
+                <img src="star.svg" alt="icon star">
+                <p>{{ average }}({{ numberOfVotes }})</p>
+            </li>
+            <li>
+                by {{ authorName }}
+            </li>
+        </ul>
+    </div>
+</a>
+
+<div *ngIf="showRecipesAdmin" class="adminRecipesButtons">
+    <button [routerLink]="[id + '/' + slugify.slugifyString(name), 'modifier']"
+        class="adminEditRecipe"
+    >Modifier</button>
+    <button (click)=showPopUpBool()>
+        <app-delete-icon />
+    </button>
+
+    <app-pop-up
+        [isShow]="showPopUp"
+        labelName="la recette"
+        (deleteFunction)="deleteRecipe()"
+        (cancelFunction)="showPopUpFalse()"
+    />
+</div>
+

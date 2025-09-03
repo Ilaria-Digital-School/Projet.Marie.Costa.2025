@@ -1,0 +1,177 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+app-recipe-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.recipeItem {
+    width: auto;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+
+    & > div {
+        width: 100%;
+        position: relative;
+        z-index: 1;
+
+        .wrapperImg {
+            width: 100%;
+            height: 100%;
+            max-height: 280px;
+            display: flex;
+            align-items: center;
+            border-radius: .5rem;
+            overflow: hidden;
+
+            @media (max-width: 767px) {
+                max-height: 200px;
+            }
+
+            img {
+                width: 100%;
+                position: relative;
+            }
+        }
+    }
+
+    @include svgStyle(24px, white);
+    @media (max-width: 767px) {
+        @include svgStyle(18px, white);
+    }
+
+    h4 {
+        margin: 1.5rem 0 .5rem 0;
+
+        @media (max-width: 767px) {
+            margin: .5rem 0;
+            text-align: center;
+        }
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width: 767px) {
+            justify-content: center;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            color: $mediumGrey;
+
+            @media (max-width: 767px) {
+                margin: 0 .5rem;
+            }
+
+            img {
+                height: 20px;
+                margin-right: .5rem;
+            }
+        }
+
+        li:last-child {
+            margin-left: 1rem;
+            text-align: right;
+        }
+    }
+}
+
+.favoriteButton {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 1rem 0 0;
+    background-color: white;
+    border: 2px solid $darkGrey;
+    border-radius: 3rem;
+    position: absolute;
+    z-index: 5;
+
+    @media (max-width: 767px) {
+        padding: .5rem;
+        top: 16px;
+        right: 16px;
+    }
+
+    button, app-heart-border-icon, app-heart-icon {
+        width: 32px;
+        height: 32px;
+        position: relative;
+    }
+
+    app-heart-icon,
+    app-heart-border-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .addFavoriteBtn, .removeFavoriteBtn {
+        &.show {
+            display: flex;
+        }
+        &.hide {
+            display: none;
+        }
+    }
+
+    .removeFavoriteBtn {
+        svg {
+            fill: $firstColor;
+        }
+    }
+
+    .addFavoriteBtn {
+        display: flex;
+
+        svg {
+            fill: $darkGrey;
+
+            &:hover {
+                fill: $secondColor;
+            }
+        }
+    }
+}
+
+.adminRecipesButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: $mediumGrey;
+    border-radius: .5rem .5rem 1rem 1rem;
+
+
+    button.adminEditRecipe {
+        padding: .5rem 1.5rem;
+        background-color: white;
+        border: 2px solid white;
+        border-radius: 2rem;
+
+        &:hover {
+            background-color: transparent;
+            color: white;
+        }
+    }
+
+    svg {
+        width: 32px;
+        height: 40px;
+        fill: white;
+
+        &:hover {
+            fill: $firstColor;
+        }
+    }
+}

@@ -1,0 +1,82 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.searchPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 0;
+    background-color: $lightGrey;
+
+    @media screen and (max-width: 767px) {
+        padding: 3rem 1rem;
+    }
+
+    section {
+        max-width: $sectionWidth;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem;
+        background-color: white;
+        border-radius: 1.5rem;
+
+        @media screen and (max-width: 767px) {
+            width: 100%;
+        }
+    }
+
+    section:not(section:last-child) {
+        margin-bottom: 2rem;
+    }
+
+    @media screen and (max-width: 767px) {
+        section:not(section:first-child) {
+            padding: 2rem 1rem;
+        }
+    }
+
+    .searchSection {
+        width: $sectionWidth;
+
+        .searchFormComponent {
+            @media screen and (max-width: 767px) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0;
+            }
+
+            select {
+                @include arrowsSelectStyle($firstColor, white);
+            }
+        }
+    }
+
+    .recipesListSearchSection {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .recipesListSearch {
+            @include gridRecipes(1fr 1fr 1fr);
+
+            @media (max-width: 767px) {
+                flex-direction: column;
+            }
+
+            .recipeItem {
+                & > div {
+                    height: 220px;
+
+                    img {
+                        width: max-content;
+                        height: max-content;
+                        min-height: 220px;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}

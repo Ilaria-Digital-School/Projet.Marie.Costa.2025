@@ -1,0 +1,26 @@
+<app-multiple-inputs
+    aria-label="Sélectionnez le type de cuisson"
+    labelTitle="Type de cuisson :"
+    inputId="cookingTypeInputs"
+    [required]="true">
+    <ul class="cookingTypeInputs">
+        @for (type of cookingTypeList; track type.id) {
+            <li [class]="type.checked ? 'liTypeCooking selectedType' : 'liTypeCooking'">
+                <label>
+                    <button type="button" (click)="onCheckBtn(type)">
+                        <img [src]="type.image" [alt]="type.altImage">
+                        <p>{{ type.title }}</p>
+                    </button>
+                    <input type="checkbox"
+                        [id]="type.inputId"
+                        [name]="type.inputId"
+                        [checked]="type.checked"
+                        [value]="type.value"
+                        [attr.aria-label]="'Cuisine ' + type.title"
+                    />
+                </label>
+            </li>
+        }
+    </ul>
+    <p class="formControlError" *ngIf="ifInvalidControl.includes('cookingType')">Le type de cuisson est requis</p>
+</app-multiple-inputs>

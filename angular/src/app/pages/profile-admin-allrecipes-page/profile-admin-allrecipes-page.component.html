@@ -1,0 +1,34 @@
+<div class="profilePage">
+    <section class="profileLinksSection">
+        <app-header-profile />
+    </section>
+
+    <section class="profileSection profileSection__adminAllRecipes">
+        <h2>Toutes les recettes du site</h2>
+
+        <div class="recipesContainer">
+            <div class="recipesList">
+                @for (recipe of getAllRecipes(); track $index) {
+                    <app-recipe-item
+                        [id]="recipe.id"
+                        [picture]="recipe.imageName"
+                        [name]="recipe.name"
+                        [average]="getRecipeAverage(recipe.id)"
+                        [numberOfVotes]="getNumberOfComments(recipe.id)"
+                        [authorName]="getUser()[$index].username"
+                        [recipeId]="recipe.id"
+                        [userId]="recipe.authorId"
+                        [isFavorite]="favoritesMap()[recipe.id] ?? false"
+                        (favoriteAdded)="addFavorite(recipe.id)"
+                        (favoriteDeleted)="deleteFavorite(recipe.id)"
+                        [showRecipesAdmin]="true"
+                        (adminShowPopUp)="showPopUpTrue(recipe.id)"
+                        (adminShowPopUpFalse)="showPopUpFalse()"
+                        (adminDeleteRecipe)="deleteRecipe(selectedRecipeIdToDelete()!)"
+                        [showPopUp]="showPopUp()"
+                    />
+                }
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,63 @@
+@use '../../utils/variables' as *;
+
+$sizeCheckbox: 120px;
+
+#cookingTypeInputs {
+    ul {
+        display: flex;
+        margin-top: .5rem;
+
+        li.liTypeCooking {
+            width: calc($sizeCheckbox + 2rem);
+            height: calc($sizeCheckbox + 2rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 1rem;
+            border: 2px solid $darkGrey;
+            border-radius: 1rem;
+
+            label {
+                width: $sizeCheckbox;
+                height: $sizeCheckbox;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    width: $sizeCheckbox;
+                    height: $sizeCheckbox;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    margin: auto;
+                    position: relative;
+                    z-index: 2;
+
+                    img {
+                        height: 48px;
+                        margin-bottom: 1rem;
+                    }
+
+                    p { text-align: center; }
+                }
+
+                input[type=checkbox] {
+                    width: $sizeCheckbox;
+                    height: $sizeCheckbox;
+                    margin: 0;
+                    position: absolute;
+                    z-index: 1;
+                    opacity: 0%;
+                }
+            }
+        }
+
+        li.liTypeCooking.selectedType {
+            background-color: $lightGrey;
+            border-color: $firstColor;
+        }
+    }
+}

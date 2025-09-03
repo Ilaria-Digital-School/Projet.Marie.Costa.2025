@@ -1,0 +1,51 @@
+<div class="homePage" aria-label="Page d'accueil">
+    <section class="subHeader" aria-label="Sous en tête de la page">
+        <div class="topHomePage">
+            <h1 aria-label="Bienvenue sur Cook It !">Bienvenue sur Cook It !</h1>
+            <h3 aria-label="Choisissez une recette parmi des milliers">Choisissez une recette parmi des milliers</h3>
+        </div>
+    </section>
+
+    <section class="homeRecipesSection" aria-label="Section avec toutes les recettes du site">
+        <app-recipes-filter (filtersChanged)="onFiltersChanged($event)" aria-label="Section pour filter les recettes" />
+        <!--<app-sort-by-select selectId="sortRecipes" />-->
+
+        <div class="recipesContainer">
+            <p *ngIf="error">{{ error }}</p>
+
+            <div class="recipesList" aria-label="Liste des recettes">
+                @for (recipe of filteredRecipes(); track $index) {
+                    <app-recipe-item
+                        [id]="recipe.id"
+                        [picture]="recipe.imageName"
+                        [name]="recipe.name"
+                        [average]="getRecipeAverage(recipe.id)"
+                        [numberOfVotes]="getNumberOfComments(recipe.id)"
+                        [authorName]="getUser()[$index].username"
+                        [recipeId]="recipe.id"
+                        [userId]="recipe.authorId"
+                        [isFavorite]="favoritesMap()[recipe.id] ?? false"
+                        (favoriteAdded)="addFavorite(recipe.id)"
+                        (favoriteDeleted)="deleteFavorite(recipe.id)"
+                    />
+                }
+            </div>
+        </div>
+
+    </section>
+
+    <section class="videosSection" aria-label="Section avec la dernière vidéo Youtube du site">
+        <div class="videosTitle">
+            <h2>Dernière vidéo</h2>
+
+            <a href="https://www.youtube.com/@ChefEtchebest" class="btn-bg-red">
+                <app-play-icon />
+                Voir toutes les vidéos
+            </a>
+        </div>
+
+        <div class="videoWrapper" appVideosSlider>
+            <youtube-player videoId="4sm39CWrmns" />
+        </div>
+    </section>
+</div>

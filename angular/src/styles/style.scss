@@ -1,0 +1,48 @@
+// UTILS
+@use './utils/variables';
+@use './utils/fonts';
+@use './utils/mixins';
+
+// BASE
+@use './base/base';
+
+// COMPONENTS
+@use './components/buttons';
+@use './components/topHomePage';
+@use './components/recipeItem';
+@use './components/navHomePage';
+@use './components/sliderNumberReceipes';
+@use './components/recipeItemTime';
+@use './components/recipeStep';
+@use './components/recipeComment';
+@use './components/formInput';
+@use './components/formMultipleInput';
+@use './components/myFavoritesDiv';
+@use './components/myRecipesTable';
+@use './components/stepsIngredientsList';
+@use './components/tableTag';
+@use './components/searchForm';
+@use './components/cookingTypeItem';
+@use './components/popUp';
+
+// COMPONENTS - SECTIONS
+@use './components/sections/recipeDetail';
+@use './components/sections/connection';
+@use './components/sections/cookingTypeInputs';
+@use './components/sections/homeRecipesSection';
+@use './components/sections/videosSection';
+@use './components/sections/newsletterSection';
+@use './components/sections/myfavorites-myrecipes';
+
+// LAYOUT
+@use './layout/header';
+@use './layout/footer';
+
+
+// PAGES
+@use './pages/createEditRecipe';
+@use './pages/contact';
+@use './pages/profile';
+@use './pages/searchPage';
+@use './pages/unauthorized';
+@use './pages/recipeCommentPage';

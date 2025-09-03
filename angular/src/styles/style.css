@@ -1,0 +1,1008 @@
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+:root {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after, *::marker {
+  box-sizing: inherit;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: white;
+  color: #010101;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input, textarea, button {
+  outline: none;
+}
+
+ul, ul li {
+  list-style: none;
+}
+
+button {
+  font-size: 16px;
+  background-color: transparent;
+  border: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5rem;
+}
+header .navigationLeft {
+  display: flex;
+}
+header .navigationLeft li {
+  margin-right: 2rem;
+}
+header .navigationRight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .navigationRight img {
+  width: auto;
+  height: 24px;
+}
+header .navigationRight a {
+  margin-left: 2.5rem;
+}
+header li:hover, header div > a:not(.btn-bg-red):hover {
+  text-decoration: underline;
+}
+header .active {
+  color: #EB4A37;
+}
+header .active:hover {
+  text-decoration-color: #EB4A37;
+}
+header a.btn-bg-red.active {
+  background-color: white;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+  background-color: white;
+}
+footer ul.socialNetworks {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+}
+footer ul.socialNetworks li, footer ul.socialNetworks li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer ul.socialNetworks li {
+  width: 40px;
+  height: 40px;
+  margin: 0 0 2rem 1.5rem;
+  border-radius: 3rem;
+}
+footer ul.socialNetworks li img {
+  height: 22px;
+}
+footer ul.socialNetworks app-social-networks:nth-child(1) li {
+  border: 2px solid #0866ff;
+}
+footer ul.socialNetworks app-social-networks:nth-child(2) li {
+  border: 2px solid #0a66c2;
+}
+footer ul.socialNetworks app-social-networks:nth-child(3) li {
+  border: 2px solid black;
+}
+footer .socialNetworks {
+  width: 1216px;
+  justify-content: flex-end;
+  margin: 0 auto;
+}
+footer .socialNetworks li {
+  margin: 0 0 2rem 1.5rem;
+}
+footer .linksFooter {
+  width: 1216px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+footer .linksFooter ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+footer .linksFooter ul li {
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+footer p {
+  width: 1216px;
+  margin: 2rem auto 0 auto;
+  font-weight: 500;
+  color: #848484;
+}
+
+.recipesSection {
+  display: flex;
+  padding: 0 3rem;
+  margin-bottom: 6rem;
+}
+.recipesSection .recipesContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.recipesSection .recipesContainer .recipesHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.recipesSection .recipesContainer .recipesHeader label {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  background-color: #FAF4F4;
+  border-radius: 0.5rem;
+}
+.recipesSection .recipesContainer .recipesHeader label img {
+  width: auto;
+  height: 20px;
+}
+.recipesSection .recipesContainer .recipesHeader label input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: transparent;
+  border: 0;
+}
+.recipesSection .recipesContainer .recipesList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 2rem;
+}
+
+.videosSection {
+  width: 1216px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 auto 6rem auto;
+}
+.videosSection h2 {
+  margin-bottom: 2.5rem;
+}
+.videosSection div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.videosSection div iframe {
+  width: 250px;
+  height: 450px;
+  border: 0;
+  border-radius: 1.5rem;
+}
+
+.newsletterSection {
+  width: 1216px;
+  padding: 3rem;
+  margin: 0 auto 6rem auto;
+  background-color: #EB4A37;
+  color: white;
+  border-radius: 2rem;
+}
+.newsletterSection h2 {
+  width: 70%;
+  margin: 0 auto 2rem auto;
+  text-align: center;
+}
+.newsletterSection form {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.newsletterSection form input {
+  width: 77%;
+  padding: 1rem;
+  font-size: 16px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 3rem;
+}
+.newsletterSection form input::placeholder {
+  color: white;
+}
+.newsletterSection form button {
+  padding: 1rem 2.5rem;
+  background-color: #F1CB36;
+  border-radius: 3rem;
+}
+
+.recipePage section:not(.otherRecipes) {
+  width: 1216px;
+  margin: 0 auto 5rem auto;
+}
+
+.recipePresentation {
+  display: flex;
+  justify-content: space-between;
+}
+.recipePresentation .wrapperImage {
+  width: 45%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.recipePresentation .wrapperImage img {
+  width: auto;
+  height: 500px;
+}
+.recipePresentation .recipeDescription {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.recipePresentation .recipeDescription > p {
+  margin: 2rem 0 1rem 0;
+  color: #5A5A5A;
+  line-height: 1.5;
+}
+.recipePresentation .recipeDescription .recipeTime {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.recipePresentation .recipeDescription .recipeTime hr {
+  margin: 1rem 0;
+}
+.recipePresentation .recipeDescription hr {
+  border: 1px solid #F4F4F4;
+}
+.recipePresentation .recipeDescription .recipeDescriptionEnd {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.recipePresentation .recipeDescription .recipeDescriptionEnd ul:first-child {
+  width: 50%;
+}
+.recipePresentation .recipeDescription .recipeDescriptionEnd ul:first-child li:last-child p {
+  color: #5A5A5A;
+}
+.recipePresentation .recipeDescription .recipeDescriptionEnd ul:first-child span {
+  color: #EB4A37;
+}
+.recipePresentation .recipeDescription .recipeDescriptionEnd ul:last-child {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.recipePresentation .recipeDescription .recipeDescriptionEnd ul:last-child img {
+  height: 24px;
+}
+.recipePresentation .recipeDescription .recipeDescriptionEnd ul:last-child li {
+  margin-left: 1rem;
+}
+.recipePresentation .recipeDescription .recipeDescriptionEnd ul:last-child li:first-child {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #848484;
+  border-radius: 2rem;
+}
+.recipePresentation .recipeDescription .recipeDescriptionEnd ul:last-child li:first-child img {
+  height: 16px;
+}
+
+.recipeDetails {
+  display: flex;
+  justify-content: space-between;
+}
+.recipeDetails h3 {
+  margin-bottom: 2rem;
+}
+.recipeDetails .recipeStepsComments {
+  width: 68%;
+}
+.recipeDetails .recipeStepsComments .commentsContainer {
+  display: flex;
+  flex-direction: column;
+}
+.recipeDetails .recipeStepsComments .commentsContainer .commentAndAnswers {
+  overflow: hidden;
+}
+.recipeDetails .recipeStepsComments .commentsContainer .commentAndAnswers:not(.commentAndAnswers:last-child) {
+  margin-bottom: 3rem;
+}
+.recipeDetails .recipeStepsComments .dividingStepsComments {
+  margin: 3rem 0;
+  border: 1px solid #F4F4F4;
+}
+.recipeDetails .recipeIngredientsTagsShare {
+  min-width: 27%;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeIngredients {
+  margin-bottom: 3rem;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeIngredients ul li {
+  padding: 0 1rem;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeIngredients ul li:not(li:last-child) {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #F4F4F4;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeTags {
+  max-width: 330px;
+  margin-bottom: 3rem;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeTags ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeTags ul li {
+  width: max-content;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem 0.5rem 0;
+  background-color: #F4F4F4;
+  color: #5A5A5A;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeShare ul.socialNetworks {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeShare ul.socialNetworks li, .recipeDetails .recipeIngredientsTagsShare .recipeShare ul.socialNetworks li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeShare ul.socialNetworks li {
+  width: 40px;
+  height: 40px;
+  margin: 0 1.5rem 0 0;
+  border-radius: 3rem;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeShare ul.socialNetworks li img {
+  height: 22px;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeShare ul.socialNetworks app-social-networks:nth-child(1) li {
+  border: 2px solid #0866ff;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeShare ul.socialNetworks app-social-networks:nth-child(2) li {
+  border: 2px solid #0a66c2;
+}
+.recipeDetails .recipeIngredientsTagsShare .recipeShare ul.socialNetworks app-social-networks:nth-child(3) li {
+  border: 2px solid black;
+}
+
+.otherRecipes {
+  padding: 6rem 4rem;
+  background-color: #F9F6F5;
+}
+.otherRecipes h3 {
+  max-width: 1216px;
+  margin: 0 auto 2rem auto;
+}
+.otherRecipes .otherRecipesList {
+  max-width: 1216px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 2rem;
+  margin: 0 auto;
+}
+.otherRecipes .otherRecipesList a {
+  max-width: max-content;
+}
+
+.signInSection {
+  width: 1216px;
+  display: flex;
+  justify-content: space-between;
+  margin: 5rem auto;
+}
+.signInSection .leftContainer {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 0;
+}
+.signInSection .leftContainer ul.socialNetworks {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem auto;
+}
+.signInSection .leftContainer ul.socialNetworks li, .signInSection .leftContainer ul.socialNetworks li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signInSection .leftContainer ul.socialNetworks li {
+  width: 40px;
+  height: 40px;
+  margin: 0 0.75rem;
+  border-radius: 3rem;
+}
+.signInSection .leftContainer ul.socialNetworks li img {
+  height: 22px;
+}
+.signInSection .leftContainer ul.socialNetworks app-social-networks:nth-child(1) li {
+  border: 2px solid #0866ff;
+}
+.signInSection .leftContainer ul.socialNetworks app-social-networks:nth-child(2) li {
+  border: 2px solid #F23B35;
+}
+.signInSection .leftContainer ul.socialNetworks app-social-networks:nth-child(3) li {
+  border: 2px solid #0a66c2;
+}
+.signInSection .leftContainer form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+.signInSection .leftContainer form a {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.signInSection .leftContainer form button {
+  margin: 0 auto;
+}
+.signInSection .rightContainer {
+  width: 45%;
+  border-radius: 1.5rem;
+  background-image: url("../../../../public/signin-image.jpg");
+  background-size: cover;
+  background-position: top left 42%;
+  overflow: hidden;
+}
+.signInSection .rightContainer .imgRightContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.35);
+  color: white;
+}
+.signInSection .rightContainer .imgRightContainer h2 {
+  line-height: 1.4;
+}
+.signInSection .rightContainer .imgRightContainer p {
+  margin: 2rem 0;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.signUpSection {
+  width: 1216px;
+  display: flex;
+  justify-content: space-between;
+  margin: 5rem auto;
+}
+.signUpSection .leftContainer {
+  width: 45%;
+  border-radius: 1.5rem;
+  background-image: url("../../../../public/signup-image.jpg");
+  background-size: cover;
+  background-position: top right;
+  overflow: hidden;
+}
+.signUpSection .leftContainer .imgRightContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.35);
+  color: white;
+}
+.signUpSection .leftContainer .imgRightContainer h2 {
+  line-height: 1.4;
+}
+.signUpSection .leftContainer .imgRightContainer p {
+  margin: 2rem 0;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.signUpSection .rightContainer {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+.signUpSection .rightContainer ul.socialNetworks {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem auto;
+}
+.signUpSection .rightContainer ul.socialNetworks li, .signUpSection .rightContainer ul.socialNetworks li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signUpSection .rightContainer ul.socialNetworks li {
+  width: 40px;
+  height: 40px;
+  margin: 0 0.75rem;
+  border-radius: 3rem;
+}
+.signUpSection .rightContainer ul.socialNetworks li img {
+  height: 22px;
+}
+.signUpSection .rightContainer ul.socialNetworks app-social-networks:nth-child(1) li {
+  border: 2px solid #0866ff;
+}
+.signUpSection .rightContainer ul.socialNetworks app-social-networks:nth-child(2) li {
+  border: 2px solid #F23B35;
+}
+.signUpSection .rightContainer ul.socialNetworks app-social-networks:nth-child(3) li {
+  border: 2px solid #0a66c2;
+}
+.signUpSection .rightContainer h2 {
+  margin-bottom: 1.5rem;
+}
+.signUpSection .rightContainer form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+.signUpSection .rightContainer form .wrapperIcon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
+  border: 3px solid #848484;
+  border-radius: 3rem;
+}
+.signUpSection .rightContainer form .wrapperIcon img {
+  height: 36px;
+}
+.signUpSection .rightContainer form input[type=file] {
+  width: max-content;
+  padding: 1rem 2rem;
+  margin: 0.5rem auto 2rem auto;
+  background-color: #5A5A5A;
+  color: white;
+  border-radius: 1rem;
+}
+.signUpSection .rightContainer form input[type=file]::file-selector-button {
+  margin-right: 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: #5A5A5A;
+  padding: 8px 12px;
+}
+.signUpSection .rightContainer form a {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.signUpSection .rightContainer form button {
+  margin: 0 auto;
+}
+
+.btn-bold {
+  font-weight: 600;
+}
+
+.btn-bg-red {
+  padding: 1rem 2.5rem;
+  background-color: #EB4A37;
+  color: white;
+  border: 2px solid #EB4A37;
+  border-radius: 3rem;
+}
+.btn-bg-red:hover {
+  background-color: orange;
+  border: 2px solid orange;
+}
+
+.btn-bg-white {
+  padding: 1rem 2.5rem;
+  background-color: white;
+  color: #5A5A5A;
+  border: 2px solid white;
+  border-radius: 3rem;
+}
+.btn-bg-white:hover {
+  background-color: #5A5A5A;
+  border: 2px solid #5A5A5A;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+select {
+  width: 180px;
+  height: 40px;
+  display: flex;
+  padding: 0 1.5rem;
+  background-color: #EB4A37;
+  color: white;
+  border: 0;
+  border-radius: 3rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, white 50%), linear-gradient(135deg, white 50%, transparent 50%), linear-gradient(45deg, transparent 50%, transparent 50%), linear-gradient(135deg, transparent 50%, white 50%), linear-gradient(225deg, transparent 50%, white 50%);
+  background-position: calc(100% - 20px) 23px, calc(100% - 15px) 23px, calc(100% - 2.5em) 0.5em, calc(100% - 20px) 15px, calc(100% - 15px) 15px, calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.subHeader {
+  padding: 0 3rem;
+  margin-bottom: 5rem;
+}
+.subHeader .topHomePage {
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  background-image: url("../../../public/header-image.jpg");
+  background-size: cover;
+  background-position: top -30px left 0;
+  background-repeat: no-repeat;
+  color: white;
+  border-radius: 1.5rem;
+}
+.subHeader .topHomePage h1 {
+  width: 408px;
+}
+.subHeader .topHomePage p {
+  width: 538px;
+  font-size: 20px;
+  line-height: 1.7;
+  margin: 2rem 0;
+}
+.subHeader .topHomePage button {
+  display: flex;
+  align-items: flex-end;
+  color: white;
+  font-size: 18px;
+}
+.subHeader .topHomePage button img {
+  height: 16px;
+  margin-left: 1rem;
+}
+
+.recipeItem {
+  width: auto;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+}
+.recipe > div {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.recipe > div .wrapperImg {
+  width: 100%;
+  height: 100%;
+  max-height: 280px;
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.recipe > div .wrapperImg img {
+  width: 100%;
+  position: relative;
+}
+.recipe > div .favoriteIcon {
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 5;
+}
+.recipe h4 {
+  margin: 1.5rem 0 0.5rem 0;
+}
+.recipe ul {
+  display: flex;
+  justify-content: space-between;
+}
+.recipe ul li {
+  display: flex;
+  align-items: center;
+  color: #848484;
+}
+.recipe ul li img {
+  height: 20px;
+  margin-right: 0.5rem;
+}
+.recipe ul li:last-child {
+  margin-left: 1rem;
+  text-align: right;
+}
+
+.recipesSection nav.recipesFilter {
+  width: 280px;
+  padding: 0 2rem 0 0;
+}
+.recipesSection nav.recipesFilter h2 {
+  margin-bottom: 2.5rem;
+}
+.recipesSection nav.recipesFilter .navFilters > li:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.recipesSection nav.recipesFilter .navFilters > li:first-child div {
+  height: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.recipesSection nav.recipesFilter .navFilters > li:first-child div hr {
+  width: 16px;
+  border-bottom: 1px solid black;
+}
+.recipesSection nav.recipesFilter .navFilters > li:first-child div hr.verticalLine {
+  transform: rotate(90deg) translateX(-2px);
+}
+.recipesSection nav.recipesFilter .navFilters > li:last-child {
+  margin-left: 1rem;
+}
+.recipesSection nav.recipesFilter .navFilters > li:last-child ul li {
+  padding: 1rem 0;
+}
+
+.sliderNumber {
+  display: flex;
+  margin: 3rem auto 0 auto;
+  color: #848484;
+}
+.sliderNumber img {
+  width: auto;
+  height: 18px;
+}
+.sliderNumber li {
+  margin: 0 1rem;
+  font-size: 18px;
+}
+.sliderNumber li.active {
+  font-weight: 700;
+  color: #5A5A5A;
+}
+
+ul.recipeItemTimeList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+ul.recipeItemTimeList li.recipeItemTime {
+  width: 49%;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+ul.recipeItemTimeList li.recipeItemTime img {
+  height: 32px;
+}
+ul.recipeItemTimeList li.recipeItemTime h4 {
+  margin: 0.5rem 0;
+}
+ul.recipeItemTimeList li.recipeItemTime p {
+  color: #848484;
+}
+ul.recipeItemTimeList li.servingNumber {
+  width: 100%;
+}
+ul.recipeItemTimeList li.recipeLineTime {
+  width: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+ul.recipeItemTimeList li.recipeLineTime hr.recipeItemVerticalBorder {
+  height: 100%;
+  margin: 0;
+}
+ul.recipeItemTimeList hr.recipeItemHorizontalBorder {
+  width: 100%;
+}
+
+.recipeStepComponent {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.recipeStepComponent .headerStep {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: #EB4A37;
+}
+.recipeStepComponent .headerStep img {
+  width: 32px;
+  height: auto;
+}
+.recipeStepComponent .headerStep h4 {
+  width: max-content;
+  margin: 0 1rem;
+  white-space: nowrap;
+}
+.recipeStepComponent .headerStep hr {
+  width: 100%;
+  border: 1px solid #F4F4F4;
+}
+.recipeStepComponent p {
+  margin-left: calc(32px + 1rem);
+}
+
+/* .recipeComment:not(.answersList .recipeComment) {
+    clip-path: rect(auto auto 0 auto);
+} */
+.recipeComment {
+  background-color: white;
+  overflow: hidden;
+}
+.recipeComment .headerComment {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.recipeComment .headerComment #wrapperUserPicture {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+  border-radius: 3rem;
+  overflow: hidden;
+}
+.recipeComment .headerComment #wrapperUserPicture #userPicture {
+  height: 72px;
+}
+.recipeComment .headerComment ul {
+  display: flex;
+  flex-direction: column;
+}
+.recipeComment .headerComment ul li h4 {
+  font-size: 18px;
+}
+.recipeComment .headerComment ul li p {
+  margin: 4px 0 8px 0;
+  color: #848484;
+}
+.recipeComment .headerComment ul li img {
+  height: 18px;
+  margin-right: 5px;
+}
+.recipeComment > p {
+  color: #5A5A5A;
+  line-height: 1.5;
+}
+.recipeComment button.showAnswersBtn {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  color: #EB4A37;
+}
+.recipeComment button.showAnswersBtn.show img {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-in-out;
+}
+.recipeComment button.showAnswersBtn img {
+  height: 12px;
+  margin-left: 1rem;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease-in-out;
+}
+
+.answersList {
+  max-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.answersList .recipeComment {
+  padding: 2rem;
+  margin: 0 0 0 5rem;
+}
+.answersList .recipeComment.isAnswer.userAnswer {
+  background-color: #F9F6F5;
+  border-bottom: 2px solid white;
+}
+
+app-recipe-comment:first-child {
+  margin-top: 2rem;
+}
+app-recipe-comment:first-child .authorAnswer {
+  padding-top: 0;
+}
+
+.formInputDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.formInputDiv input:not(input[type=file]) {
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  border: 2px solid #848484;
+  border-radius: 5rem;
+}
+.formInputDiv label, .formInputDiv input, .formInputDiv button {
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=style.css.map */

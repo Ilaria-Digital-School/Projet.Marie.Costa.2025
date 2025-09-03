@@ -1,0 +1,126 @@
+<div class="mainLayout">
+    <header>
+        <ul class="navigationLeft">
+            @for (item of headerNav; track $index) {
+                <li class="navigationItem">
+                    <a
+                        [routerLink]="item.link"
+                        routerLinkActive="active"
+                        ariaCurrentWhenActive="page"
+                        appBurgerMenu
+                        (click)="appBurgerMenu.closeMenu()">{{ item.name }}</a>
+                </li>
+            }
+            <li class="headerMobile">
+                @if (userIsLogged | async) {
+                    <a
+                        class="btn-bg-red"
+                        [routerLink]="'/profil/' + userData.id + '/' + userData.username + '/mes-infos'"
+                        routerLinkActive="active"
+                        ariaCurrentWhenActive="page">Mon profil</a>
+
+                    <button type="button"
+                            class="btn-bg-darkGrey btn-bg-darkGrey__header"
+                            (click)="logout()">
+                        Déconnexion
+                    </button>
+                } @else {
+                    <a
+                        class="btn-bg-red"
+                        routerLink="/connexion"
+                        routerLinkActive="active"
+                        ariaCurrentWhenActive="page"
+                        appBurgerMenu
+                        (click)="appBurgerMenu.closeMenu()">Connexion</a>
+                }
+            </li>
+        </ul>
+
+        <img src="cook-it-logo.svg" alt="Logo de cook it">
+
+        <div class="navigationRight">
+            <div class="navigationRightBtns navigationRightBtns__mobile">
+                @if (userIsLogged | async) {
+                    <a
+                        class="btn-bg-red"
+                        [routerLink]="'/profil/' + userData.id + '/' + userData.username + '/mes-infos'"
+                        routerLinkActive="active"
+                        ariaCurrentWhenActive="page">Mon profil</a>
+
+                    <button type="button"
+                            class="btn-bg-darkGrey btn-bg-darkGrey__header"
+                            (click)="logout()">
+                        Déconnexion
+                    </button>
+                } @else {
+                    <a
+                        class="btn-bg-red"
+                        routerLink="/connexion"
+                        routerLinkActive="active"
+                        ariaCurrentWhenActive="page"
+                        appBurgerMenu
+                        (click)="appBurgerMenu.closeMenu()">Connexion</a>
+                }
+            </div>
+
+            <button type="button"
+                class="burgerMenu"
+                appBurgerMenu
+                (click)="appBurgerMenu.toggleMenu()">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs; let last = last">
+                    <ng-container *ngIf="!last">
+                        <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+                    </ng-container>
+                    <ng-container *ngIf="last">
+                        <span>{{ breadcrumb.label }}</span>
+                    </ng-container>
+                </li>
+            </ul>
+        </nav>
+
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer>
+        <ul class="socialNetworks">
+            @for (social of socialNetworksList(); track $index) {
+                <app-social-networks
+                    [link]="social.href"
+                    [pathImg]="social.path"
+                    [altImg]="social.altImg" />
+            }
+        </ul>
+
+        <ul class="navigation">
+            <li class="navigationItem">
+                <a
+                    routerLink="/accueil"
+                    routerLinkActive="active"
+                    ariaCurrentWhenActive="page">Accueil</a>
+            </li>
+            <li class="navigationItem">
+                <a
+                    routerLink="/rechercher"
+                    routerLinkActive="active"
+                    ariaCurrentWhenActive="page">Rechercher</a>
+            </li>
+            <li class="navigationItem">
+                <a
+                    routerLink="/contact"
+                    routerLinkActive="active"
+                    ariaCurrentWhenActive="page">Contact</a>
+            </li>
+        </ul>
+
+        <p>Made by in Guatemala City.</p>
+    </footer>
+</div>

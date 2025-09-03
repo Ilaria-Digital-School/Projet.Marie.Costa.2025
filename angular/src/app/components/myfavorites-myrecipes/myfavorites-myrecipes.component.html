@@ -1,0 +1,81 @@
+<section class="myfavorites-myrecipes">
+    <h2>{{ title() }}</h2>
+
+    <!-- @If FAVORITES : -->
+    <div *ngIf="isFavorites()" class="myFavoritesDiv">
+        <p class="withoutFavorites" *ngIf="favoritesList.length === 0">
+            Vous n'avez aucune recette dans vos favoris
+        </p>
+        <div class="myFavoritesItems">
+            @for (recipe of getUserFavorites(); track recipe.id) {
+                <app-recipe-item
+                    [id]="recipe.id"
+                    [picture]="recipe.imageName"
+                    [name]="recipe.name"
+                    [average]="getRecipeAverage(recipe.id)"
+                    [numberOfVotes]="getNumberOfComments(recipe.id)"
+                    [authorName]="username"
+                    [recipeId]="recipe.id"
+                    [userId]="recipe.authorId"
+                    [isFavorite]="favoritesMap()[recipe.id] ?? false"
+                    (favoriteAdded)="addFavorite(recipe.id)"
+                    (favoriteDeleted)="deleteFavorite(recipe.id)"
+                />
+            }
+        </div>
+    </div>
+
+    <!-- @If RECIPES : -->
+    <a *ngIf="isRecipes()" class="btn-bg-yellow" routerLink="creer">Créer une recette</a>
+
+    <table *ngIf="isRecipes()" class="myRecipesTable">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th class="myrecipeName">Nom de la recette</th>
+                <th class="myrecipeCreationDate">Date de création</th>
+                <th class="myrecipeOpinion">Avis</th>
+                <th class="myrecipeButtons"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (recipe of userRecipes(); track recipe.id) {
+                <tr>
+                    <td>{{ recipe.id }}</td>
+                    <td class="myrecipeName">
+                        <a [routerLink]="'/recettes/' + recipe.id">
+                            {{ recipe.name }}
+                        </a>
+                    </td>
+                    <td class="myrecipeCreationDate">
+                        {{ recipe.created }}
+                    </td>
+                    <td class="myrecipeOpinion">
+                        {{ getRecipeAverage(recipe.id) }} ({{ getNumberOfComments(recipe.id) }} notes)
+                    </td>
+                    <td class="myrecipeButtons">
+                        <button type="button" class="modifyRecipe">
+                            <a [routerLink]="[recipe.id + '/' + slugify.slugifyString(recipe.name), 'modifier']">
+                                <app-modify-icon />
+                            </a>
+                        </button>
+                        <button type="button" class="deleteRecipe" (click)="showPopUpTrue(recipe.id)">
+                            <app-delete-icon />
+                        </button>
+
+                        <app-pop-up
+                            [isShow]="showPopUp()"
+                            labelName="la recette"
+                            (deleteFunction)="deleteUserRecipe(selectedRecipeIdToDelete())"
+                            (cancelFunction)="showPopUpFalse()"
+                        />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</section>

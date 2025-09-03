@@ -1,0 +1,11 @@
+<div class="profilePage">
+    <section class="profileLinksSection">
+        <app-header-profile />
+    </section>
+
+    <app-myfavorites-myrecipes
+        [isFavorites]="true"
+        [isRecipes]="false"
+        [favoritesArray]="favoritesList()"
+        title="Mes favoris" />
+</div>

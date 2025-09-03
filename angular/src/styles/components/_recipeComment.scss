@@ -1,0 +1,133 @@
+@use '../utils/variables' as *;
+
+$imgSize: 72px;
+
+.commentsItem {
+    overflow: hidden;
+
+    .headerComment {
+        display: flex;
+        align-items: center;
+
+        #wrapperUserPicture {
+            width: $imgSize;
+            height: $imgSize;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 2rem;
+            border-radius: 3rem;
+            overflow: hidden;
+
+            #userPicture {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            margin-bottom: 1rem;
+
+            #wrapperUserPicture {
+                width: 48px;
+                height: 48px;
+                margin-right: 1rem;
+
+                #userPicture {
+                    height: 48px;
+                }
+            }
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+
+            li {
+                h4 {
+                    font-size: 18px;
+                }
+
+                p {
+                    margin: 4px 0 8px 0;
+                    color: $mediumGrey;
+                }
+
+                img {
+                    height: 18px;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    & > p {
+        margin-top: 2rem;
+        color: $darkGrey;
+        line-height: 1.5;
+    }
+
+    button.showAnswersBtn {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+        color: $firstColor;
+
+        @media only screen and (max-width: 767px) {
+            margin: .5rem auto 0 auto;
+        }
+
+        &.show img {
+            transform: rotate(180deg);
+            transition: transform .2s ease-in-out;
+        }
+
+        img {
+            height: 12px;
+            margin-left: 1rem;
+            transform: rotate(0deg);
+            transition: transform .2s ease-in-out;
+        }
+    }
+
+}
+
+.answersList {
+    max-height: 0;
+    display: flex;
+    flex-direction: column;
+    //margin: 2rem 0 3rem 0;
+    overflow: hidden;
+
+    @media only screen and (max-width: 767px) {
+        padding: 0 1rem;
+    }
+
+    .recipeComment {
+        padding: 2rem;
+        margin: 0 0 0 5rem;
+
+        @media only screen and (max-width: 767px) {
+            padding: 1rem 1.5rem;
+            margin: 0;
+        }
+
+        &.isAnswer.userAnswer {
+            background-color: $lightBrown;
+            border-bottom: 2px solid white;
+        }
+    }
+}
+
+app-recipe-comment {
+    padding: 2rem;
+}
+
+app-recipe-comment:nth-child(even) {
+    background-color: $lightGrey;
+}
+app-recipe-comment:nth-child(odd) {
+    background-color: white;
+}
+

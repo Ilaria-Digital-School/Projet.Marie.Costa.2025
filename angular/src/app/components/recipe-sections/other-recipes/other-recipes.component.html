@@ -1,0 +1,20 @@
+<section class="otherRecipes">
+    <h3>Autres recettes que vous pourriez aimer</h3>
+    <div class="otherRecipesList">
+        @for (recipe of recipesList(); track recipe.id;) {
+            <app-recipe-item
+                [id]="recipe.id"
+                [picture]="recipe.imageName"
+                [name]="recipe.name"
+                [numberOfVotes]="0"
+                [authorName]="'totoEnTest'"
+            />
+            <!--
+                [authorName]="recipe.authorId"
+                [numberOfVotes]="recipe.opinions?.length"
+            -->
+
+                <!--[average]="getRecipeAverage(recipe.id)"-->
+        }
+    </div>
+</section>

@@ -1,0 +1,45 @@
+<div class="profileLinksList">
+    <a
+        class="btn-bg-darkGrey btn-bg-darkGrey__profile"
+        [routerLink]="'/profil/' + userLoggedIn.user.id + '/' + userLoggedIn.user.username + '/mes-infos'"
+        routerLinkActive="btn-bg-darkGrey__profile--active"
+        ariaCurrentWhenActive="page">
+        <app-profile-icon />
+        <p>Mon profil</p>
+    </a>
+    <a
+        class="btn-bg-darkGrey btn-bg-darkGrey__profile"
+        [routerLink]="'/profil/' + userLoggedIn.user.id + '/' + userLoggedIn.user.username + '/mes-favoris'"
+        routerLinkActive="btn-bg-darkGrey__profile--active"
+        ariaCurrentWhenActive="page">
+        <app-heart-icon />
+        <p>Mes favoris</p>
+    </a>
+    <a
+        class="btn-bg-darkGrey btn-bg-darkGrey__profile"
+        [routerLink]="'/profil/' + userLoggedIn.user.id + '/' + userLoggedIn.user.username + '/mes-recettes'"
+        routerLinkActive="btn-bg-darkGrey__profile--active"
+        ariaCurrentWhenActive="page">
+        <app-recipe-icon />
+        <p>Mes recettes</p>
+    </a>
+
+    @if (userLoggedIn.user.roleId === 1) {
+        <a
+            class="btn-bg-darkGrey btn-bg-darkGrey__profile"
+            [routerLink]="'/profil/' + userLoggedIn.user.id + '/admin/utilisateurs'"
+            routerLinkActive="btn-bg-darkGrey__profile--active"
+            ariaCurrentWhenActive="page">
+            <app-users-icon />
+            <p>Utilisateurs</p>
+        </a>
+        <a
+            class="btn-bg-darkGrey btn-bg-darkGrey__profile"
+            [routerLink]="'/profil/' + userLoggedIn.user.id + '/admin/recettes'"
+            routerLinkActive="btn-bg-darkGrey__profile--active"
+            ariaCurrentWhenActive="page">
+            <app-recipe-icon />
+            <p>Recettes</p>
+        </a>
+    }
+</div>

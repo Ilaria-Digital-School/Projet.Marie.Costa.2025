@@ -1,0 +1,9 @@
+<div class="formInputDiv formMultipleInputDiv" [id]="inputId()">
+    <label [for]="inputId()">
+        <h3>{{ labelTitle() }} <span *ngIf="required()" style="color: #EB4137">*</span></h3>
+    </label>
+
+    <div class="multipleInputs">
+        <ng-content />
+    </div>
+</div>

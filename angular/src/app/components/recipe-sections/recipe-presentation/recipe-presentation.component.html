@@ -1,0 +1,54 @@
+<section class="recipePresentation" *ngIf="recipeData">
+    <div class="recipePresentationLeft">
+        <div class="wrapperImage">
+            <img [src]="recipeData.imageName" [alt]="'Image de la recette de ' + recipeData.name">
+        </div>
+
+        <div class="recipeCuisineType">
+            <p>Cuisine <span>{{ recipeDetailService.getCuisineLabel(recipeData.cuisineType) }}</span></p>
+        </div>
+
+        <ul>
+            <li>
+                <ul>
+                    <li>
+                        <p>Créé par <span>{{ getRecipeAuthor(recipeData.authorId).username }}</span> </p>
+                    </li>
+                    <li>
+                        <p>{{ getRecipesUser(recipeData.authorId).length }} {{ getRecipesUser(recipeData.authorId).length <= 1 ? 'recette' : 'recettes' }}</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <button (click)="window.print()">
+                    <img src="print-solid.svg" alt="Bouton pour imprimer la recette">
+                    Imprimer la recette
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="recipeDescription">
+        <h2>{{ recipeData.name }}</h2>
+
+        <p>{{ recipeData.description }}</p>
+    </div>
+
+    <div class="recipeTime" *ngIf="recipeTime && servingNumber && recipeData"> <!-- les ngIf sont présent pour éviter les erreurs dans la console du navigateur -->
+        <app-recipe-item-time
+            [makingHours]="recipeTime.making?.hours"
+            [makingMinutes]="recipeTime.making?.minutes"
+
+            [pauseHours]="recipeTime.pause?.hours"
+            [pauseMinutes]="recipeTime.pause?.minutes"
+
+            [cookingHours]="recipeTime.cooking?.hours"
+            [cookingMinutes]="recipeTime.cooking?.minutes"
+            [cookingType]="recipeData.cookingType"
+
+            [servingNumber]="servingNumber.number"
+            [servingUnit]="servingNumber.servingType"
+            [difficulty]="recipeData.difficulty"
+        />
+    </div>
+</section>

@@ -1,0 +1,20 @@
+<div class="recipePage">
+    <!-- SECTION : Recipe presentation -->
+    <app-recipe-presentation [recipeId]="recipeId" />
+
+    <section class="recipeSectionBorder">
+        <hr class="recipeBorder" />
+    </section>
+
+    <!-- ########## -->
+
+    <!-- SECTION : Recipe details -->
+    <app-recipe-details
+        [recipeId]="recipeId" />
+    <!-- ########## -->
+
+    <!-- SECTION : "Other recipes you may like" -->
+    <!--<app-other-recipes [recipe]="recipe" [recipeId]="recipe.id" />-->
+    <!-- ########## -->
+</div>
+

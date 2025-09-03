@@ -1,0 +1,70 @@
+<div class="profilePage">
+    <section class="profileLinksSection">
+        <app-header-profile />
+    </section>
+
+    <section class="profileSection profileSection__adminAllUsers">
+        <h2>Utilisateurs du site</h2>
+
+        <a class="btn-bg-darkGrey" href="/inscription">Ajouter un utilisateur</a>
+
+        <table class="myRecipesTable adminAllUsersTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Rôle</th>
+                <th>Date de création</th>
+                <th class="userButtons"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+                @for (user of usersList(); track user.id) {
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>
+                            {{ user.username }}
+                        </td>
+                        <td>
+                            {{ user.email }}
+                        </td>
+
+                        <td>
+                            @if (user.roleId === 3) {
+                                User
+                            } @else if (user.roleId === 2) {
+                                Moderator
+                            } @else if (user.roleId === 1) {
+                                Admin
+                            } @else {
+                                Aucun rôle défini
+                            }
+                        </td>
+
+                        <td>{{ user.created }}</td>
+
+                        <td>
+                            <button
+                                type="button"
+                                class="btn-bg-darkGrey modifyUser"
+                                [routerLink]="user.id + '/' + user.username"
+                            >Modifier</button>
+                            <button type="button" class="deleteUser" (click)="showPopUpTrue(user.id)">
+                                <app-delete-icon />
+                            </button>
+
+                            <app-pop-up
+                                [isShow]="showPopUp()"
+                                labelName="l'utilisateur"
+                                (deleteFunction)="deleteUser(selectedUserIdToDelete())"
+                                (cancelFunction)="showPopUpFalse()"
+                            />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>

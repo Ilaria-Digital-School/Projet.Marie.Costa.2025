@@ -1,0 +1,10 @@
+<div class="sortBySelectContainer">
+    <select [name]="selectId()" [id]="selectId()" class="sortBySelect">
+        <option value="">Trier par :
+            <img src="arrows-up-down.svg" alt="">
+        </option>
+        <option value="latestToOld">Du + récent au + vieux</option>
+        <option value="oldToLastest">Du + vieux au + récent</option>
+    </select>
+    <app-arrows-up-down />
+</div>

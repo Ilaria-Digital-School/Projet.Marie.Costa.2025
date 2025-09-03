@@ -1,0 +1,91 @@
+<section class="signUpSection">
+    <div class="leftContainer">
+        <div class="imgRightContainer">
+            <h2>Vous avez un compte ?</h2>
+            <p>Connectez-vous avec votre mail <br> et votre mot de passe</p>
+            <a href="/connexion" class="btn-bg btn-bg-white">Se connecter</a>
+        </div>
+    </div>
+
+    <div class="rightContainer">
+        <h2>Inscription</h2>
+
+        <p>Ajoutez vos informations personnelles</p>
+
+        <form method="post" enctype="multipart/form-data" [formGroup]="userForm.formGroupCreate" (ngSubmit)="onSubmit()">
+            <div class="wrapperIcon">
+                <img src="user-regular.svg" alt="user icon">
+            </div>
+
+            <div class="formInputDiv" id="container-signup-add-picture">
+                <label for="signup-add-picture">
+                    Choisissez une photo de profil : <span style="color: #EB4137">*</span>
+                </label>
+
+                <input type="file"
+                    id="signup-add-picture"
+                    name="signup-add-picture"
+                    placeholder="Choisissez une photo de profil"
+                    (change)="onFileSelected($event)"
+                />
+
+                <p class="msgError" *ngIf="imageNameExist()">La photo de profil est requise</p>
+            </div>
+
+            <div class="formInputDiv" id="container-signup-username">
+                <label for="signup-username">
+                    Nom d'utilisateur : <span style="color: #EB4137">*</span>
+                </label>
+
+                <input type="text"
+                    id="signup-username"
+                    name="signup-username"
+                    placeholder="Nom d'utilisateur"
+                    formControlName="username"
+                    required
+                />
+
+                <p class="msgError" *ngIf="usernameExist()">Le nom d'utilisateur est requis</p>
+            </div>
+
+            <div class="formInputDiv" id="container-signup-email">
+                <label for="signup-email">
+                    Email : <span style="color: #EB4137">*</span>
+                </label>
+
+                <input type="email"
+                    id="signup-email"
+                    name="signup-email"
+                    placeholder="email@example.com"
+                    formControlName="email"
+                    required
+                />
+
+                <p class="msgError" *ngIf="emailExist()">Le mail est requis</p>
+            </div>
+
+            <div class="formInputDiv" id="container-signup-password">
+                <label for="signup-password">
+                    Mot de passe : <span style="color: #EB4137">*</span>
+                </label>
+
+                <input type="password"
+                    id="signup-password"
+                    name="signup-password"
+                    placeholder="**********"
+                    formControlName="password"
+                    required
+                />
+
+                <p class="msgError" *ngIf="passwordExist()">Le mot de passe est requis</p>
+            </div>
+
+            <a href="">Mot de passe oublié ?</a>
+
+            <button type="submit" class="btn-bg btn-bg-red"> <!-- submit -->
+                Connexion
+            </button>
+        </form>
+    </div>
+
+</section>

@@ -1,0 +1,31 @@
+<div class="commentsItem">
+    <div class="headerComment">
+        <div id="wrapperUserPicture">
+            <img id="userPicture"
+                 [src]="userData[0].imageName"
+                 [alt]="'Photo de profil de ' + userData[0].username"
+                 onerror="
+                     this.src='user-regular.svg';
+                     this.style.border='4px solid #848484';
+                     this.style.borderRadius='5rem';
+                     this.style.width='72px';
+                     this.style.height='72px';
+                 " >
+        </div>
+        <ul>
+            <li>
+                <h4>{{ userData[0].username }}</h4>
+            </li>
+            <li>
+                <p>{{ date() }}</p>
+            </li>
+            <li>
+                @for (star of getStars(note()); track $index) {
+                    <img *ngIf="star" src="star.svg" alt="star icon">
+                    <img *ngIf="!star" src="star-border.svg" alt="star icon">
+                }
+            </li>
+        </ul>
+    </div>
+    <p *ngIf="text()">{{ text() }}</p>
+</div>

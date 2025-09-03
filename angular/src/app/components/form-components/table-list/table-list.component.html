@@ -1,0 +1,46 @@
+<table class="stepsIngredientsList stepsIngredientsList__ingredientsList">
+    <thead>
+        <tr>
+            @for (itemHead of headList; track $index) {
+                <th>{{ itemHead }}</th>
+            }
+            <th>Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (bodyList.length < 1) {
+            <tr class="tableRowEmpty">
+                <td>Aucun élément créé</td>
+            </tr>
+        } @else {
+            @if(typeTable === 'ingredient') {
+                @for (itemBody of bodyList; track $index) {
+                    <tr [attr.data-ingredient-index]="$index">
+                        <td>{{ itemBody.value.quantity }}</td>
+                        <td>{{ getIngredientUnit(itemBody) }}</td>
+                        <td>{{ itemBody.value.name }}</td>
+                        <td>
+                            <button type="button" (click)="onClick($event)">
+                                <app-delete-icon />
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+
+            @if(typeTable === 'step') {
+                @for (itemBody of bodyList; track $index) {
+                    <tr [attr.data-step-index]="$index">
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ itemBody.stepName }}</td>
+                        <td>
+                            <button type="button" (click)="onClick($event)">
+                                <app-delete-icon />
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

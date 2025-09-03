@@ -1,0 +1,62 @@
+@use '../utils/variables' as *;
+
+app-table-list {
+    width: 100%;
+}
+
+.stepsIngredientsList {
+    &__ingredientsList {
+        th:nth-child(2), td:nth-child(2) {
+            width: 20%;
+            text-align: center;
+        }
+        th:nth-child(3), td:nth-child(3) {
+            width: 45%;
+            text-align: center;
+        }
+    }
+    &__stepsList {
+        th:nth-child(2), td:nth-child(2) {
+            width: 70%;
+            text-align: center;
+        }
+    }
+
+    thead, tbody {
+        tr {
+            th:first-child, td:first-child {
+                width: 12%;
+                text-align: left;
+            }
+
+            th:last-child, td:last-child {
+                width: 12%;
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    thead tr {
+        padding: 1rem 1.5rem;
+        background-color: $mediumGrey;
+        color: white;
+    }
+
+    tbody {
+        tr:nth-child(even) {
+            background-color: $lightGrey;
+        }
+    }
+
+    tbody tr.tableRowEmpty td {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.stepsTable table thead th:nth-child(2),
+.stepsTable table tbody td:nth-child(2) {
+    width: 90%;
+}
